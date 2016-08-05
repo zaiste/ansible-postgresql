@@ -1,0 +1,4 @@
+---
+postgresql_user: app
+postgresql_password: app
+postgresql_database: app

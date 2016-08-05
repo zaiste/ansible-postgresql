@@ -1,0 +1,23 @@
+---
+- name: add APT repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' state=present
+- name: add repository key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+- name: install PostgreSQL and related packages
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - postgresql-client
+    - libpq-dev
+    - python-psycopg2
+- name: create role `{{ postgresql_user }}`
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_user: name={{ postgresql_user }} password={{ postgresql_password }}
+- name: create database `{{ postgresql_database }}` owned by `{{ postgresql_user }}`
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_db: name={{ postgresql_database }} owner={{ postgresql_user }}
