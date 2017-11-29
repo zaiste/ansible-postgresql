@@ -1,7 +1,7 @@
 ansible-postgresql
 =========
 
-Ansible role that installs PostgreSQL for Ubuntu Xenial from the official APT.
+Ansible role that installs PostgreSQL for Ubuntu from the official APT. By default it supports Ubuntu 17.10
 
 Requirements
 ------------
@@ -11,6 +11,7 @@ None.
 Role Variables
 --------------
 
+- `dist` default to `artful`
 - `postgresql_user` defaults to `app`
 - `postgresql_password` defaults to `app`
 - `postgresql_database` defaults to `app`
@@ -35,4 +36,4 @@ MIT / BSD
 Author Information
 ------------------
 
-[Zaiste](http://zaiste.net) 2014 - 2016
+[Zaiste](http://zaiste.net) 2017
