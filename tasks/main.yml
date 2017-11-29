@@ -1,8 +1,8 @@
 ---
-- name: add APT repository
-  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ dist }}-pgdg main' state=present
 - name: add repository key
   apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+- name: add APT repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ dist }}-pgdg main' state=present
 - name: install PostgreSQL and related packages
   apt: pkg={{ item }} state=latest update_cache=yes
   with_items:
