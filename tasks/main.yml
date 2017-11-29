@@ -11,13 +11,10 @@
     - postgresql-client
     - libpq-dev
     - python-psycopg2
+    - python3-psycopg2
 - name: create role `{{ postgresql_user }}`
   become_user: postgres
-  vars:
-    ansible_ssh_pipelining: true
   postgresql_user: name={{ postgresql_user }} password={{ postgresql_password }}
 - name: create database `{{ postgresql_database }}` owned by `{{ postgresql_user }}`
   become_user: postgres
-  vars:
-    ansible_ssh_pipelining: true
   postgresql_db: name={{ postgresql_database }} owner={{ postgresql_user }}
