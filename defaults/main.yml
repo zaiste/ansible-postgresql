@@ -1,5 +1,6 @@
 ---
-postgresql_user: app
-postgresql_password: app
-postgresql_database: app
-dist: artful
+dist: zesty 
+databases:
+- name: app
+  owner: app
+  password: app

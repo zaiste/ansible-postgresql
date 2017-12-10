@@ -11,10 +11,8 @@ None.
 Role Variables
 --------------
 
-- `dist` default to `artful`
-- `postgresql_user` defaults to `app`
-- `postgresql_password` defaults to `app`
-- `postgresql_database` defaults to `app`
+- `dist` default to `zesty` (it compatible with `artful`)
+- `databases` is a list; it defaults to `app` database owned by `app` user with `app` password (check the example playbook below)
 
 Dependencies
 ------------
@@ -24,9 +22,23 @@ None.
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - { role: zaiste.postgresql }
+```yml
+- hosts: servers
+  roles:
+  - role: zaiste.postgresql 
+    databases:
+    - name: app
+      owner: app
+      password: secr3t
+      extensions:
+      - hstore
+    - name: data 
+      owner: app
+      extensions:
+      - hstore 
+      - isn 
+```
+           
 
 License
 -------

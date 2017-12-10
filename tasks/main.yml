@@ -12,9 +12,29 @@
     - libpq-dev
     - python-psycopg2
     - python3-psycopg2
-- name: create role `{{ postgresql_user }}`
+- name: create users
   become_user: postgres
-  postgresql_user: name={{ postgresql_user }} password={{ postgresql_password }}
-- name: create database `{{ postgresql_database }}` owned by `{{ postgresql_user }}`
+  postgresql_user:
+    name: "{{ item.owner }}"
+    password: "{{ item.password | default(item.owner) }}"
+    encrypted: yes
+  with_items: 
+  - "{{ databases }}"
+
+- name: create databases 
   become_user: postgres
-  postgresql_db: name={{ postgresql_database }} owner={{ postgresql_user }}
+  postgresql_db:
+    name: "{{ item.name }}"
+    owner: "{{ item.owner | default('app') }}"
+  with_items: 
+  - "{{ databases }}"
+
+- name: create extensions
+  become_user: postgres
+  postgresql_ext:
+    name: "{{ item.1 }}"
+    db: "{{ item.0.name }}"
+  with_subelements: 
+  - "{{ databases }}"
+  - extensions
+  - skip_missing: True
