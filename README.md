@@ -1,26 +1,22 @@
-ansible-postgresql
-=========
+# ansible-postgresql
 
-Ansible role that installs PostgreSQL for Ubuntu from the official APT. By default it supports Ubuntu 17.10
+Ansible role that installs PostgreSQL for Ubuntu using the official APT. By
+default it supports Ubuntu 18.04 (Bionic Beaver). 
 
-Requirements
-------------
+## Requirements
 
 None.
 
-Role Variables
---------------
+## Role Variables
 
-- `dist` default to `zesty` (it compatible with `artful`)
+- `dist` defaults to `bionic` 
 - `databases` is a list; it defaults to `app` database owned by `app` user with `app` password (check the example playbook below)
 
-Dependencies
-------------
+## Dependencies
 
 None.
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```yml
 - hosts: servers
@@ -40,12 +36,10 @@ Example Playbook
 ```
            
 
-License
--------
+## License
 
 MIT / BSD
 
-Author Information
-------------------
+## Author Information
 
-[Zaiste](http://zaiste.net) 2017
+[Zaiste](http://zaiste.net) 2018

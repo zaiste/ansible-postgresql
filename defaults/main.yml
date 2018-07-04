@@ -1,5 +1,5 @@
 ---
-dist: zesty 
+dist: bionic
 databases:
 - name: app
   owner: app

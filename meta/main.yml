@@ -1,6 +1,6 @@
 galaxy_info:
   author: Zaiste
-  description: Ansible role that installs PostgreSQL for Ubuntu Xenial from the official APT.
+  description: Ansible role that installs PostgreSQL for Ubuntu 18.04 (Bionic Beaver) using the official APT.
   company: Nukomeet
   license: MIT
   min_ansible_version: 1.2
